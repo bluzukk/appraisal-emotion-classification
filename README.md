@@ -1,3 +1,11 @@
+*This repository contains data and python code that was used for the experiments in the paper*  
+*[Appraisal Theories for Emotion Classification in Text](https://arxiv.org/abs/2003.14155).*  
+
+*In addition, this repository contains scripts to reproduce the results of the models reported in the paper  
+and to automatically create corpora annotated with appraisals using corpora, which are annotated with emotions.*
+<br>
+<br>
+
 - [Requirements](#requirements)
   * [Installation using Anaconda](#installation-using-anaconda)
   * [Manual Installation](#manual-installation)
