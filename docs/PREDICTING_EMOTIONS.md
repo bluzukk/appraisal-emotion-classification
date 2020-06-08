@@ -1,6 +1,7 @@
 # Predicting Emotions from Appraisals
-[TOC]
-
+- [Example Usage](#example-usage)
+- [Tips](#tips)
+- [Help](#help)
 
 ## Example Usage
 * Performing cross validation on your dataset:

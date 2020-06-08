@@ -1,5 +1,9 @@
 # Text Appraisal Emotion Pipeline Experiment
-[TOC]
+- [General Information](#general-information)
+  * [Embedding Setup](#embedding-setup)
+- [Example Usage](#example-usage)
+- [Tips](#tips)
+- [Help](#help)
 
 ## General Information
 

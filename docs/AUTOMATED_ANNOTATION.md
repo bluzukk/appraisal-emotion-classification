@@ -1,5 +1,8 @@
 # Automated Appraisal Annotation
-[TOC]
+- [General Information](#general-information)
+- [Usage](#usage)
+- [Annotation Variants](#annotation-variants)
+- [Help](#help)
 
 ## General Information
 You can create automated appraisal annotations on other datasets using the tool

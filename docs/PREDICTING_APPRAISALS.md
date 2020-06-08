@@ -1,5 +1,10 @@
 # Predicting Appraisals from Text
-[TOC]
+- [General Information](#general-information)
+  * [Embedding Setup](#embedding-setup)
+- [Example Usage](#example-usage)
+- [Creating Annotations using Predicted Appraisals](#creating-annotations-using-predicted-appraisals)
+- [Tips](#tips)
+- [Help](#help)
 
 ## General Information
 This repository provides a Convolutional Neural Network for predicting appraisal
