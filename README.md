@@ -17,12 +17,6 @@
   * [Emotion predictions based on Appraisals](#emotion-predictions-based-on-appraisals)
   * [Pipeline Experiment](#pipeline-experiment)
   * [Multi-task and Oracle Experiment](#multi-task-and-oracle-experiment)
-- [Experimenting with Appraisal Models](#experimenting-with-appraisal-models)
-  * [Creating automated Appraisal Annotations](#creating-automated-appraisal-annotations)
-  * [Experimenting with automated Appraisal Annotations](#experimenting-with-automated-appraisal-annotations)
-    + [Predicting Emotions from Appraisals](#predicting-emotions-from-appraisals)
-    + [Predicting Appraisals from Text](#predicting-appraisals-from-text)
-    + [Pipeline Experiment](#pipeline-experiment-1)
 
 # Requirements
 
