@@ -1,8 +1,10 @@
-*This repository contains data and python code that was used for the experiments in the paper*  
+*This repository contains the Appraisal enISEAR dataset. A reannotation of the enISEAR corpus with Cognitive Appraisal.*  
+*Further, this repository contains and python code that was used for the experiments in the paper*  
 *[Appraisal Theories for Emotion Classification in Text](https://arxiv.org/abs/2003.14155).*  
 
-*In addition, this repository contains scripts to reproduce the results of the models reported in the paper  
-and to automatically create corpora annotated with appraisals using corpora, which are annotated with emotions.*
+*In addition, this repository provides scripts to reproduce the results of the models reported in the paper.*  
+*For more information about the Appraisal enISEAR dataset see the [Corpora Overview](corpora/CORPORA.md).*
+
 <br>
 <br>
 
