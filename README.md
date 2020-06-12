@@ -3,7 +3,7 @@
 *[Appraisal Theories for Emotion Classification in Text](https://arxiv.org/abs/2003.14155).*  
 
 *In addition, this repository provides scripts to reproduce the results of the models reported in the paper.*  
-*For more information about the Appraisal enISEAR dataset see the [Corpora Overview](corpora/README.md).*
+*For more information about the Appraisal enISEAR dataset see the [Corpora Overview](corpora).*
 
 <br>
 <br>
