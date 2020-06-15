@@ -60,7 +60,7 @@ pip3 install --user numpy==1.16.4 pandas sklearn keras gensim tensorflow-gpu==1.
 This configuration was tested on linux with python 3.8.1 for CPU and python 3.5.9 for GPU support.
 
 
-# Reproducing Results on enISEAR
+# Reproducing Results on 'Appraisal enISEAR'
 
 ## Baseline Results
 To start the baseline models on the enISEAR dataset navigate to the baseline directory with `cd impl-z-baseline;` then run
@@ -103,3 +103,39 @@ or
 ```bash
 python3 oracle_CNN_saveModels.py --dataset enISEAR_V1 --rounds 1
 ```
+
+# Annotating unlabeled Text Instances with Appraisals
+The scripts can be used to predict appraisals on text instances with no emotions labels.  
+To do this first navigate to the ''main experiment'' directory with `cd impl-main-experiments;`  
+Then run the `b_appraisals_from_text.py` script with the `--annotate` option:
+
+```bash
+python3 b_appraisals_from_text.py -d enISEAR_V1 --annotate <TextInstances>.csv
+```
+
+<br>
+
+You can also skip training to predict appraisals by using the pre-trained model, which was
+trained to predict appraisals on 'appraisal enISEAR'  
+To annotate your text instances using the pre-trained model run:
+
+```bash
+python3 b_appraisals_from_text.py -d enISEAR_V1 --annotate <TextInstances>.csv --loadmodel ../pre-trained/enISEAR_V1_appraisal_predictor.h5
+```
+
+<br>
+Your dataset annotated with predicted appraisals will be saved to '\<TextInstances\>\_appraisals.csv'  
+<br>
+Note that your dataset musst be formatted as follows:
+
+```
+Sentence
+<Text Instance 1>
+<Text Instance 2>
+<Text Instance 3>
+.
+.
+.
+```
+
+This means the first line in the file musst be 'Sentence' followed by your text instances (one in every line).

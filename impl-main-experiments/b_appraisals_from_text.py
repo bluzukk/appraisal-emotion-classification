@@ -277,21 +277,32 @@ if args.testset:
 # Load dataset which will be annotated
 if args.annotate:
     try:
-        pandas_frame = pd.read_csv(args.annotate, sep='\t')
-        text_instances_annotate = pandas_frame['Sentence']
+        if (args.annotate.endswith('.tsv')):
+            sep = '\t'
+            data_annotate = pd.read_csv(args.annotate, sep=sep)
+            text_instances_annotate = data_annotate['Sentence']
+        elif(args.annotate.endswith('.csv')):
+            sep = ','
+            data_annotate = pd.read_csv(args.annotate, sep=sep)
+            text_instances_annotate = data_annotate['Sentence']
+        else:
+            print('\nOnly .tsv (Tab-separated values) or .csv (Comma-separated values) files are supported.')
+            print('')
+            print('\nExiting.')
+            sys.exit(1)
     except FileNotFoundError:
         print('\nERROR: The test set "%s" was not found.' % args.annotate)
         print('       Make sure you enter the correct path and filename with extension.')
         print('\nExiting.')
         sys.exit(1)
-    except IndexError:
+    except KeyError:
         print('\nERROR: The test set "%s" seems to have a wrong format.' % args.annotate)
         print('       Make sure your dataset has the correct format, i.e.')
         print('       "Prior_Emotion,Sentence" or just "Sentence"')
         print('\nExiting.')
         sys.exit(1)
     except:
-        print("Unexpected error: %s in line %d" % (sys.exc_info()[1], sys.exc_info()[-1].tb_lineno))
+        print("Unexpected error: %s in line %d" % (sys.exc_info()[0], sys.exc_info()[-1].tb_lineno))
         sys.exit(1)
 
 print('----------------------------------------------------------')
@@ -601,6 +612,7 @@ def annotatePredictedAppraisals(text_instances_padded,
                                 text_instances_padded_annotate,
                                 appraisals):
     print('INFO: Annotating Dataset')
+
     if (args.continous):
         _reg_metrics = reg_metrics.metrics_regression(APPRAISALS, 2)
         activation = 'linear'  # Use linear activation
@@ -613,13 +625,24 @@ def annotatePredictedAppraisals(text_instances_padded,
         loss = 'binary_crossentropy'
         metric = ['accuracy']
 
-    appraisal_predictor = text_cnn_model_appraisals(MAX_SEQUENCE_LENGTH, vocab_size,
-                EMBEDDING_DIMS, FILTER_SIZE, CONV_FILTERS,
-                embedding_matrix, DROPOUT, len(APPRAISALS), activation)
-    appraisal_predictor.compile(OPTIMIZER, loss, metrics=metric)
-    appraisal_predictor.fit(text_instances_padded, appraisals,
-                            batch_size=BATCH_SIZE, epochs=EPOCHS,
-                            verbose=VERBOSITY)
+    if (args.loadmodel):
+        if (not args.loadmodel.endswith('.h5')):
+            args.loadmodel += '.h5'
+        try:
+            appraisal_predictor = load_model(args.loadmodel)
+            print('INFO: Loaded pre-trained model: %s' % args.loadmodel)
+        except:
+            print('\nUnexpected error:', sys.exc_info()[1])
+            sys.exit(1)
+
+    else:
+        appraisal_predictor = text_cnn_model_appraisals(MAX_SEQUENCE_LENGTH, vocab_size,
+                    EMBEDDING_DIMS, FILTER_SIZE, CONV_FILTERS,
+                    embedding_matrix, DROPOUT, len(APPRAISALS), activation)
+        appraisal_predictor.compile(OPTIMIZER, loss, metrics=metric)
+        appraisal_predictor.fit(text_instances_padded, appraisals,
+                                batch_size=BATCH_SIZE, epochs=EPOCHS,
+                                verbose=VERBOSITY)
 
     if (args.continous==False):
         weights = [0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50]
@@ -640,7 +663,11 @@ def annotatePredictedAppraisals(text_instances_padded,
         preds = appraisal_predictor.predict(text_instances_padded_annotate)
         appraisal_predictions = list(preds)
 
-    out_file_name = args.annotate[:len(args.annotate)-4] + '_appraisals.tsv'
+    if (args.annotate.endswith('.tsv')):
+        extension = '.tsv'
+    elif(args.annotate.endswith('.csv')):
+        extension = '.csv'
+    out_file_name = args.annotate[:len(args.annotate)-4] + '_appraisals' + extension
     first_line = True
     with open(out_file_name, 'w') as out_file:
         with open(args.annotate, 'r') as in_file:
@@ -648,14 +675,16 @@ def annotatePredictedAppraisals(text_instances_padded,
                 if (first_line):
                     annotation = ''
                     for dimension in APPRAISALS:
-                        annotation += '\t' + dimension
+                        annotation += sep + dimension
                     out_file.write(line.rstrip('\n') + str(annotation) + '\n')
                     first_line = False
                 else:
                     annotation = ''
                     for p in range(len(APPRAISALS)):
-                        annotation += '\t' + str(appraisal_predictions[i-1][p])
+                        annotation += sep + str(appraisal_predictions[i-1][p])
                     out_file.write(line.rstrip('\n') + annotation + '\n')
+    print('INFO: Created dataset with appraisal annotation: %s' % out_file_name)
+
 
 # Force to run experiment on cpu or gpu
 # otherwise let backend choose (prefers gpu if available)
