@@ -124,7 +124,7 @@ python3 b_appraisals_from_text.py -d enISEAR_V1 --annotate <TextInstances>.csv -
 ```
 
 <br>
-Your dataset annotated with predicted appraisals will be saved to '\<TextInstances\>\_appraisals.csv'  
+Your dataset annotated with predicted appraisals will be saved to 'TextInstances_appraisals.csv'  
 <br>
 Note that your dataset musst be formatted as follows:
 
@@ -137,5 +137,4 @@ Sentence
 .
 .
 ```
-
 This means the first line in the file musst be 'Sentence' followed by your text instances (one in every line).
