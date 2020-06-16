@@ -16,6 +16,7 @@
   * [Emotion predictions based on Appraisals](#emotion-predictions-based-on-appraisals)
   * [Pipeline Experiment](#pipeline-experiment)
   * [Multi-task and Oracle Experiment](#multi-task-and-oracle-experiment)
+- [Annotating unlabeled Text Instances with Appraisals](#annotating-unlabeled-text-instances-with-appraisals)
 
 # Requirements
 
