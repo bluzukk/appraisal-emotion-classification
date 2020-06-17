@@ -10,7 +10,7 @@ If you are working with *Appraisal enISEAR* please consider citing the paper on 
 <br>
 
 There are three versions of the *Appraisal enISEAR*:
-* enISEAR-appraisal-V1: A binary-valued manual annotation.
+* enISEAR-appraisal-V1: A binary-valued manual annotation. (This is the annotation used in the paper)
 * enISEAR-appraisal-V2: A continous-valued automatic annotation based on emotion labels.
 * enISEAR-appraisal-V3: A binary-valued automatic annotation based on emotion labels.
 
