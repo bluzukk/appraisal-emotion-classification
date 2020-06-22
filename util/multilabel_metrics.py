@@ -179,26 +179,27 @@ class metrics:
             result = result + str(f1_score)
             print(result)
 
-        precision = str(round(sum(precisions) / len(self.LABELS), self.decimals))
-        recall = str(round(sum(recalls) / len(self.LABELS), self.decimals))
-        f1_macro = str(round(sum(f1_scores) / len(self.LABELS), self.decimals))
+        # Macro scores
+        precision = sum(precisions) / len(self.LABELS)
+        recall = sum(recalls) / len(self.LABELS)
+        f1_macro = sum(f1_scores) / len(self.LABELS)
 
-        # Calulate total results
+        # Micro scores
         tp_total = sum(tp)
         fp_total = sum(fp)
         fn_total = sum(fn)
-
-        # Micro scores
         print('-'*70)
-        p = tp_total / (tp_total + fp_total)
-        r = tp_total / (tp_total + fn_total)
-        f1_micro = 2 * ((p*r) / (p+r))
-        f1_micro = str(round(f1_micro, 2))
+        p_micro = tp_total / (tp_total + fp_total)
+        r_micro = tp_total / (tp_total + fn_total)
+        f1_micro = 2 * ((p_micro*r_micro) / (p_micro+r_micro))
 
-        total = '\t\tTotal' + tab
-        total = total + str(tp_total) + tab + str(fp_total) + tab + str(fn_total) + tab
-        total = total + precision + tab
-        total = total + recall + tab
-        total = total + f1_macro + '(micro:' + f1_micro + ')'+ tab
-        # total = total + f1_macro
-        print(total)
+        print('\tTotal (macro)\t%d\t%d\t%d\t%.*f\t%.*f\t%.*f' %
+                        (tp_total, fp_total, fn_total,
+                        self.decimals, precision,
+                        self.decimals, recall,
+                        self.decimals, f1_macro))
+
+        print('\tTotal (micro)\t\t\t\t%.*f\t%.*f\t%.*f' % (
+                        self.decimals, p_micro,
+                        self.decimals, r_micro,
+                        self.decimals, f1_micro))
