@@ -25,18 +25,18 @@
 2. Install Tensorflow environment
 
   ```
-  conda create -n tf tensorflow  # (CPU-Version)
+  conda create -n tf tensorflow=1.14  # (CPU-Version)
   ```
 
   ```
-  conda create -n tf tensorflow-gpu # (GPU-Version)
+  conda create -n tf tensorflow-gpu=1.14 # (GPU-Version)
   ```
 
 3. Activate Tensorflow environment and install futher dependencies
 
   ```
   conda activate tf;
-  pip3 install numpy==1.16.4 pandas sklearn keras gensim;
+  pip3 install numpy==1.16.4 pandas sklearn keras==2.3.0 gensim;
   ```
 
 ## Manual Installation
