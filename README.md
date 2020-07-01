@@ -45,14 +45,14 @@
 * Python 3.5+
 * Install dependencies:
 ```
-pip3 install --user numpy==1.16.4 pandas sklearn keras gensim tensorflow
+pip3 install --user numpy==1.16.4 pandas sklearn keras==2.3.0 gensim tensorflow==1.14
 ```
 
 #### GPU Support (nvidia)
 * Python 3.5 or 3.6
 * Install dependencies:
 ```
-pip3 install --user numpy==1.16.4 pandas sklearn keras gensim tensorflow-gpu==1.14
+pip3 install --user numpy==1.16.4 pandas sklearn keras==2.3.0 gensim tensorflow-gpu==1.14
 ```
 
 * Install [cuda](https://developer.nvidia.com/cuda-downloads 'https://developer.nvidia.com/cuda-downloads') (Testet with cuda 10.0.130)
