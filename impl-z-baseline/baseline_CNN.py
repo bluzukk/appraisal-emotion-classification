@@ -8,7 +8,6 @@ import numpy as np
 from numpy import asarray, zeros
 import tensorflow as tf
 
-
 from sklearn.model_selection import KFold
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences, sequence
@@ -47,8 +46,8 @@ embdedding_config.add_argument('--embeddingpath', '-ep',
             help='path to your pre-trained embedding download (e.g. glove300)\n'
                  'note that only 300 dimensional embeddings are supported')
 parameter_config.add_argument('--epochs', '-e',
-            default=20, type=int,
-            help='set the number training epochs (default: 20)')
+            default=15, type=int,
+            help='set the number training epochs (default: 15)')
 parameter_config.add_argument('--batchsize', '-b',
             default=32, type=int,
             help='set the training batchsize (default: 32)')
@@ -84,7 +83,6 @@ if (not args.debug):
 
 EXPERIMENTNAME = 'Baseline TextCNN ' + _DATASET
 
-
 ################################################################################
 ## enISEAR config
 ################################################################################
@@ -101,14 +99,8 @@ if (args.dataset == 'enISEAR'):
     OPTIMIZER = 'adam'
     MAX_SEQUENCE_LENGTH = 300
     MAX_NUM_WORDS = 50000
-    if (args.epochs):
-        EPOCHS = args.epochs
-    else:
-        EPOCHS = 15
-    if (args.batchsize):
-        BATCH_SIZE = args.batchsize
-    else:
-        BATCH_SIZE = 32
+    EPOCHS = args.epochs         # 15
+    BATCH_SIZE = args.batchsize  # 32
 
 ################################################################################
 ## ISEAR CONFIG
@@ -126,15 +118,8 @@ elif (args.dataset == 'ISEAR'):
     OPTIMIZER = 'adam'
     MAX_SEQUENCE_LENGTH = 300
     MAX_NUM_WORDS = 50000
-    if (args.epochs):
-        EPOCHS = args.epochs
-    else:
-        EPOCHS = 25
-    if (args.batchsize):
-        BATCH_SIZE = args.batchsize
-    else:
-        BATCH_SIZE = 32
-
+    EPOCHS = args.epochs         # 25
+    BATCH_SIZE = args.batchsize  # 32
 
 ################################################################################
 ## TEC config
@@ -152,15 +137,12 @@ elif (args.dataset == 'TEC'):
     OPTIMIZER = 'adam'
     MAX_SEQUENCE_LENGTH = 300
     MAX_NUM_WORDS = 50000
-    if (args.epochs):
-        EPOCHS = args.epochs
-    else:
-        EPOCHS = 25
-    if (args.batchsize):
-        BATCH_SIZE = args.batchsize
-    else:
-        BATCH_SIZE = 128
+    EPOCHS = args.epochs         # 25
+    BATCH_SIZE = args.batchsize  # 128
 
+################################################################################
+## Other datasets
+################################################################################
 else:
     # print('INFO: Using dataset %s' % args.dataset)
     SAVEFILE = 'results_baseline_'+ args.dataset + '.txt'
@@ -222,7 +204,6 @@ if (not args.testset):
     print('   Runs         :', ROUNDS)
 print('-------------------------------\n')
 
-
 # Tokenize and create word index
 print('INFO: Loading Dataset')
 instances = instances.str.lower().str.replace('.','').str.replace(',','')
@@ -239,7 +220,6 @@ if (args.testset):
     instances_test = instances_test.str.lower().str.replace('.','').str.replace(',','')
     instances_sequences_test = tokenizer.texts_to_sequences(instances_test)
     instances_padded_test = sequence.pad_sequences(instances_sequences_test, maxlen=MAX_SEQUENCE_LENGTH, padding='post')
-
 
 # Prepare embedding if not present yet
 EMBEDDING_DIMS = 300
