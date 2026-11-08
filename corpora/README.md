@@ -1,7 +1,9 @@
 # Corpora
 
 This repository contains the *Appraisal enISEAR* dataset. A reannotation of the
-enISEAR corpus with Cognitive Appraisal.
+enISEAR corpus with Cognitive Appraisal. 
+
+**Data License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) (for the appraisal annotations; the texts are from [enISEAR](https://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/deisear/))
 
 If you are working with *Appraisal enISEAR* please consider citing the paper on the original enISEAR dataset:  
 [Crowdsourcing and Validating Event-focused Emotion Corpora for German and English (2019)](https://www.aclweb.org/anthology/P19-1391/).
