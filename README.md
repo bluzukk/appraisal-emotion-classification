@@ -12,6 +12,7 @@ In Proceedings of the 28th International Conference on Computational Linguistics
 
 In addition, this repository provides scripts to reproduce the results of the models reported in the paper. 
 For more information about the Appraisal enISEAR dataset see the [Corpora Overview](corpora).
+Data License: CC BY 4.0 (for the appraisal annotations; the texts are from [enISEAR](https://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/deisear/))
 
 <br>
 
